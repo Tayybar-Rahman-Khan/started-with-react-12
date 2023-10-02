@@ -9,7 +9,6 @@ const DUMMY_EXPENSES = [
     amount: 94.12,
     date: new Date(2020, 7, 14),
   },
-
   { 
     id: 'e2', 
     title: 'New TV', 
@@ -29,18 +28,20 @@ const DUMMY_EXPENSES = [
     date: new Date(2021, 5, 12),
   },
 ];
-const App = () => {
- const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
- const addExpenseHandler = (expense) => {
-  setExpenses((prevExpenses) => {
-    return [expense, ...prevExpenses];
-  });
- };
 
- return (
+const App = () => {
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+
+  const addExpenseHandler = (expense) => {
+    setExpenses((prevExpenses) => {
+      return [expense, ...prevExpenses];
+    });
+  };
+
+  return (
     <div>
-      <NewExpense />
-      <Expenses expenses={expenses} />
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses items={expenses} />
     </div>
   );
 };
